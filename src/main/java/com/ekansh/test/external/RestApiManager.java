@@ -22,6 +22,12 @@ import java.util.HashMap;
 /**
  * Created by Ekansh Gautam on 2019-11-27
  */
+
+/**
+ * Rest Api Manager is the generic api manager which contains the boiler plate code used to call external service.
+ * It handles exception too and returns a generic message along with tag/token. This token can be used to track requests
+ * logging.
+ */
 @Component
 @Slf4j
 public abstract class RestApiManager {

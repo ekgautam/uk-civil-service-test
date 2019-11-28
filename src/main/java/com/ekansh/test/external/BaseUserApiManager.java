@@ -8,6 +8,10 @@ import java.util.HashMap;
 /**
  * Created by Ekansh Gautam on 2019-11-27
  */
+
+/**
+ * Base Api Manager which implements methods of RestApiManager and set basic request headers too.
+ */
 public class BaseUserApiManager extends RestApiManager {
 
     @Value("${external.users.api.base.url}")

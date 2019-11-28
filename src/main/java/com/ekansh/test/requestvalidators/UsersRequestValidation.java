@@ -11,6 +11,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class UsersRequestValidation {
 
+    /**
+     * This validates the get request and request isn't served if it fails. Appropriate message is returned along with
+     * the errors/validation which has failed.
+     */
     public ValidationResponse validateRequest(String city, Double milesWithin) {
 
         ValidationResponse response = new ValidationResponse();

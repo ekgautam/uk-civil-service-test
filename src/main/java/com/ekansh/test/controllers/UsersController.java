@@ -25,6 +25,10 @@ public class UsersController {
     @Autowired
     IUsersService userService;
 
+    /**
+     * This controller returns the user within given miles as query param {@code miles_within}.
+     * Return type is {@code List<Users>} and users POJO class is same as the api response.
+     */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ServiceResponse<BaseObjectResponse<List<Users>>> getNearbyUsers(
             @RequestParam(value = "city", required = false) String city,

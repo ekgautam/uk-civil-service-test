@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 
+/**
+ * Base exception handler handles all exception that has been thrown by application and handled exception is transformed
+ * to a generic message and returned to controller.
+ */
 @ControllerAdvice
 public class BaseExceptionHandler {
-
 
     @ExceptionHandler(UnprocessableEntityException.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)

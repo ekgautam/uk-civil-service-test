@@ -27,7 +27,8 @@ public class UsersApiManager extends BaseUserApiManager {
                     new TypeToken<ArrayList<Users>>() {
                     }.getType(), TestUtility.getSecureRandomToken());
         } catch (Exception e) {
-            // here use case is not to break the api but to result users so may be exception handling can be done or not.
+//            Use case is not to break the api but to return users.
+//            here it can done in either way whether to break the api by throwing exception or return empty users depends on the use case.
             log.error("Couldn't get data from external api so returning empty users");
         }
 
@@ -41,7 +42,8 @@ public class UsersApiManager extends BaseUserApiManager {
                     new TypeToken<ArrayList<Users>>() {
                     }.getType(), TestUtility.getSecureRandomToken());
         } catch (Exception e) {
-            // here use case is not to break the api but to result users so may be exception handling can be done or not.
+//            Use case is not to break the api but to return users.
+//            here it can done in either way whether to break the api by throwing exception or return empty users depends on the use case.
             log.error("Couldn't get data from external api so returning empty users");
         }
 

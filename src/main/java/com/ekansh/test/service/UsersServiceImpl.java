@@ -22,13 +22,21 @@ import java.util.List;
 public class UsersServiceImpl implements IUsersService {
 
     @Autowired
-    UsersRequestValidation usersRequestValidation;
+    private UsersRequestValidation usersRequestValidation;
 
     @Autowired
-    UsersApiManager usersApiManager;
+    private UsersApiManager usersApiManager;
 
-    public static final Double LONDON_LAT = 51.509865;
-    public static final Double LONDON_LONG = -0.118092;
+//    As London's lat long were not provided in the question I have taken them up from Internet.
+    private static final Double LONDON_LAT = 51.509865;
+    private static final Double LONDON_LONG = -0.118092;
+    private static final String LONDON = "London";
+
+    /**
+     * This method validates the request and return filtered {@code List<Users>} based on {@code city} and {@code milesWithin}.
+     * If {@code city} and {@code milesWithin} both are null it is considered as invalid request else whichever is not null
+     * will be considered for filtering.
+     */
 
     @Override
     @SuppressWarnings("unchecked")
@@ -45,8 +53,11 @@ public class UsersServiceImpl implements IUsersService {
         List<Users> cityUsers = new ArrayList<>();
         List<Users> allUsers = usersApiManager.getAllUsers();
 
+//        if city has been provided as empty string London will be picked up
         if (StringUtils.isNotEmpty(city)) {
             cityUsers = usersApiManager.getUsersByCity(city);
+        } else {
+            usersApiManager.getUsersByCity(LONDON);
         }
 
         filteredUsers.addAll(cityUsers);
@@ -60,9 +71,7 @@ public class UsersServiceImpl implements IUsersService {
         if (milesWithin != null) {
 
             remainingUsers.forEach(user -> {
-                Double dist = MathUtil
-                        .getMiles(MathUtil
-                                .distance(LONDON_LAT, user.getLatitude(), LONDON_LONG, user.getLongitude(), 0D, 0D));
+                Double dist = MathUtil.getMiles(MathUtil.distance(LONDON_LAT, user.getLatitude(), LONDON_LONG, user.getLongitude()));
                 if (dist <= milesWithin) {
                     filteredUsers.add(user);
                 }
